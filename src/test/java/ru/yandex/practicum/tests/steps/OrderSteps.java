@@ -40,25 +40,25 @@ public class OrderSteps {
         List<String> allIds = response.jsonPath().getList("data._id");
         Random random = new Random();
 
-        int randomIndex1 = random.nextInt(allIds.size());
-        int randomIndex2;
+        int randomIndexOne = random.nextInt(allIds.size());
+        int randomIndexTwo;
 
         do {
-            randomIndex2 = random.nextInt(allIds.size());
-        } while (randomIndex2 == randomIndex1);
+            randomIndexTwo = random.nextInt(allIds.size());
+        } while (randomIndexTwo == randomIndexOne);
 
-        String randomId1 = allIds.get(randomIndex1);
-        String randomId2 = allIds.get(randomIndex2);
+        String randomIdOne = allIds.get(randomIndexOne);
+        String randomIdTwo = allIds.get(randomIndexTwo);
 
-        return List.of(randomId1, randomId2);
+        return List.of(randomIdOne, randomIdTwo);
     }
 
     @Step("Создание списка с неверными ID ингредиентов")
     public List<String> createInvalidIngredients() {
         long timestamp = System.currentTimeMillis();
         return Arrays.asList(
-                "invalid_id_" + timestamp + "_1",
-                "invalid_id_" + timestamp + "_2"
+                "invalid_id_" + timestamp + "one",
+                "invalid_id_" + timestamp + "two"
         );
     }
 

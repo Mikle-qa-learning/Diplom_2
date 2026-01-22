@@ -45,6 +45,8 @@ public class CreateUserTests {
 
         Response createResponse = userSteps.createUser(email, password, name);
 
+        userSteps.getAccessToken(createResponse);
+
         userSteps.verifyStatusCode(createResponse, 200);
         userSteps.verifySuccessField(createResponse, true);
         userSteps.verifyAccessTokenNotNull(createResponse);
@@ -54,7 +56,6 @@ public class CreateUserTests {
 
         if (userSteps.verifyCreationSuccess(createResponse, 200)) {
             userSteps.markAsCreated();
-            userSteps.getAccessToken(createResponse);
         }
 
     }
